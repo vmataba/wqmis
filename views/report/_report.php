@@ -1,4 +1,4 @@
-<table class="table table-bordered table-sm table-striped">
+<table class="table table-bordered table-sm table-striped" id="reportSection">
     <tr>
         <th>Parameter</th>
         <th>Turbidity</th>
@@ -25,15 +25,23 @@
 
 
         <tr>
-            <td><?= $quality['vending_machine_id']?></td>
-            <td><?= $quality['turbidity']?></td>
-            <td><?= $quality['pH']?></td>
-            <td><?= $quality['conductivity']?></td>
-            <td><?= $quality['temperature']?></td>
-            <td><?= $quality['status']?></td>
-            <td><?= $quality['recieved_at']?></td>
+            <td><?= $quality['vending_machine_id'] ?></td>
+            <td><?= $quality['turbidity'] ?></td>
+            <td><?= $quality['pH'] ?></td>
+            <td><?= $quality['conductivity'] ?></td>
+            <td><?= $quality['temperature'] ?></td>
+            <td><?= $quality['status'] ?></td>
+            <td><?= $quality['recieved_at'] ?></td>
         </tr>
 
     <?php endforeach; ?>
 
 </table>
+
+
+<script>
+    document.getElementById('btnPrintReport').onclick = function () {
+        window.print();
+        //document.getElementById('reportSection').print();
+    };
+</script>
