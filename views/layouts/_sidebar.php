@@ -52,6 +52,11 @@ use app\models\UserType;
                     'visible' => $user->getUserType()->user_type_code === UserType::TYPE_ADMIN
                 ],
                 [
+                    'label' => 'Reports',
+                    'url' => ['report/index'],
+                    'icon' => 'file'
+                ],
+                [
                     'label' => 'Configurations',
                     'url' => '#',
                     'icon' => 'cog',
@@ -91,7 +96,7 @@ use app\models\UserType;
     <ul class="sidebar-menu" data-widget="tree">
         <!--        <li class="header">MAIN NAVIGATION</li>-->
         <li class="active treeview">
-<!--            <a href="<?php //Url::to(['/site/index'])         ?>">
+<!--            <a href="<?php //Url::to(['/site/index'])          ?>">
                 <i class="fa fa-dashboard"></i> <span>Dashboard</span>
             </a>-->
             <!--            <a href="#">
@@ -101,10 +106,10 @@ use app\models\UserType;
                             </span>
                         </a>-->
             <!--            <ul class="treeview-menu">
-                            <li><a href="<?php //Url::to(['/region/index'])        ?>"><i class="fa fa-map-marker"></i>Regions</a></li>
-                            <li><a href="<?php //Url::to(['/district/index'])        ?>"><i class="fa fa-circle-o"></i>Districts</a></li>
-                            <li><a href="<?php //Url::to(['/id-type/index'])        ?>"><i class="fa fa-circle-o"></i>Id Types</a></li>
-                            <li><a href="<?php //Url::to(['/user-type/index'])        ?>"><i class="fa fa-circle-o"></i>User Types</a></li>
+                            <li><a href="<?php //Url::to(['/region/index'])         ?>"><i class="fa fa-map-marker"></i>Regions</a></li>
+                            <li><a href="<?php //Url::to(['/district/index'])         ?>"><i class="fa fa-circle-o"></i>Districts</a></li>
+                            <li><a href="<?php //Url::to(['/id-type/index'])         ?>"><i class="fa fa-circle-o"></i>Id Types</a></li>
+                            <li><a href="<?php //Url::to(['/user-type/index'])         ?>"><i class="fa fa-circle-o"></i>User Types</a></li>
                         </ul>-->
         </li>
     </ul>
