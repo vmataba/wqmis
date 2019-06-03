@@ -25,6 +25,39 @@ AppAsset::register($this);
         <?php $this->head() ?>
         <!--script src="template/bower_components/jquery/dist/jquery.min.js"></script-->
         <!--script src="/wqmis2/web/assets/36d5ffed/jquery.js"></script-->
+
+        <style>
+            .container{
+                width: 93%;
+                margin-left: 20px;
+                margin-right: 20px;
+            }
+            .shadow {
+                box-shadow: 0 .5rem 1rem rgba(0,0,0,.15)!important;
+            }
+            .card{
+                position: relative;
+                display: -ms-flexbox;
+                display: flex;
+                -ms-flex-direction: column;
+                flex-direction: column;
+                min-width: 0;
+                word-wrap: break-word;
+                background-color: #fff;
+                background-clip: border-box;
+                border: 1px solid rgba(0,0,0,.125);
+                border-radius: .25rem;
+            }
+            .card-body{
+                flex: 1 1 auto;
+                padding: 1.25rem;
+            }
+            .shadow {
+                box-shadow: 0 .5rem 1rem rgba(0,0,0,.15)!important;
+
+            }
+        </style>
+
     </head>
     <body class="hold-transition skin-blue-light fixed sidebar-mini">
         <?php $this->beginBody() ?>
@@ -78,4 +111,5 @@ AppAsset::register($this);
         <?php $this->endBody() ?>
     </body>
 </html>
-<?php $this->endPage()?>
+<?php
+$this->endPage()?>
