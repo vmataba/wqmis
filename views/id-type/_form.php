@@ -12,7 +12,18 @@ use yii\widgets\ActiveForm;
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'id_type_name')->textInput(['maxlength' => true]) ?>
+    <div class="row">
+        <div class="col-lg-6 col-md-6 col-sm-12">
+            <?= $form->field($model, 'id_type_code')->textInput(['maxlength' => true,'disabled' => !$model->isNewRecord]) ?>
+        </div>
+        <div class="col-lg-6 col-md-6 col-sm-12">
+            <?= $form->field($model, 'id_type_name')->textInput(['maxlength' => true]) ?>
+        </div>
+    </div>
+
+
+
+
 
     <div class="form-group">
         <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
