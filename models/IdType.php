@@ -15,6 +15,10 @@ use yii\helpers\ArrayHelper;
  */
 class IdType extends \yii\db\ActiveRecord {
 
+    const TYPE_NATIONAL_ID = 'NATIONAL_ID';
+    const TYPE_DRIVING_LICENSE = 'DRIVING_LICENSE';
+    const TYPE_VOTERS_ID = 'VOTERS_ID';
+
     /**
      * {@inheritdoc}
      */
@@ -29,7 +33,8 @@ class IdType extends \yii\db\ActiveRecord {
         return [
             [['id_type_code', 'id_type_name'], 'required'],
             [['id_type_name'], 'string', 'max' => 255],
-            [['id_type_code'], 'string', 'max' => 50]
+            [['id_type_code'], 'string', 'max' => 50],
+            [['id_type_code'], 'unique']
         ];
     }
 
