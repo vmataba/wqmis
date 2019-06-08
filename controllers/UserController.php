@@ -68,13 +68,19 @@ class UserController extends Controller {
         $model->auth_key = \Yii::$app->getSecurity()->generateRandomString();
         $model->created_at = date('Y-m-d H:i:s');
         $model->created_by = \Yii::$app->user->id;
-        $model->password = \Yii::$app->getSecurity()->generatePasswordHash(User::DEFAULT_PASSWORD);
+        $default_password = \Yii::$app->getSecurity()->generatePasswordHash(User::DEFAULT_PASSWORD);
 
         $profile = new UserProfile();
 
         $dataToLoad = Yii::$app->request->post();
 
         if ($model->load($dataToLoad) && $profile->load($dataToLoad)) {
+
+            if (empty($model->password)) {
+                $model->password = $default_password;
+            } else {
+                $model->password = Yii::$app->getSecurity()->generatePasswordHash($model->password);
+            }
 
             if ($model->save()) {
                 $profile->userid = $model->userid;
@@ -84,13 +90,14 @@ class UserController extends Controller {
                     return $this->redirect(['view', 'id' => $model->userid]);
                 }
                 $model->delete();
+                $model->password = '';
                 return $this->render('create', [
                             'model' => $model,
                             'profile' => $profile
                 ]);
             }
         }
-
+        $model->password = '';
         return $this->render('create', [
                     'model' => $model,
                     'profile' => $profile
@@ -108,9 +115,19 @@ class UserController extends Controller {
         $model = $this->findModel($id);
         $profile = UserProfile::findOne(['userid' => $model->userid]);
 
+        $saved_password = $model->password;
+
+        $model->password = '';
+
         $dataToLoad = Yii::$app->request->post();
 
         if ($model->load($dataToLoad) && $profile->load($dataToLoad)) {
+
+            if (empty($model->password)) {
+                $model->password = $saved_password;
+            } else {
+                $model->password = Yii::$app->getSecurity()->generatePasswordHash($model->password);
+            }
 
             if ($model->save() && $profile->save()) {
                 \Yii::$app->session->setFlash('success', "{$model->getFullName()} details have been successfully updated");
@@ -136,6 +153,8 @@ class UserController extends Controller {
      */
     public function actionDelete($id) {
         $this->findModel($id)->delete();
+        $profile = UserProfile::findOne(['userid' => $id]);
+        $profile->delete();
 
         return $this->redirect(['index']);
     }

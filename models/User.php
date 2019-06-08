@@ -40,6 +40,7 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface {
             [['last_login', 'created_at', 'updated_at'], 'safe'],
             [['created_by', 'updated_by', 'user_type'], 'integer'],
             [['username', 'password'], 'string', 'max' => 255],
+            [['password'],'string', 'min' => 5],
             ['username', 'unique', 'message' => 'This username is in use!'],
             [['access_token', 'auth_key'], 'string', 'max' => 256],
         ];
@@ -100,10 +101,9 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface {
     public function getProfile(): UserProfile {
         return UserProfile::findOne(['userid' => $this->userid]);
     }
-    
+
     public function getUserType(): UserType {
         return UserType::findOne($this->user_type);
     }
 
 }
-

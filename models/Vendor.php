@@ -40,7 +40,7 @@ class Vendor extends \yii\db\ActiveRecord {
         return [
             [['vendor_id', 'first_name', 'last_name', 'region_id', 'district_id', 'street'], 'required'],
             [['vendor_id_type', 'district_id', 'updated_by'], 'integer'],
-            [['vendor_id'],'string'],
+            [['vendor_id'], 'string'],
             [['created_at', 'updated_at'], 'safe'],
             [['vending_machine_id', 'first_name', 'middle_name', 'last_name', 'street'], 'string', 'max' => 255],
             [['phone_number'], 'string', 'max' => 16],
@@ -49,7 +49,7 @@ class Vendor extends \yii\db\ActiveRecord {
             [['vendor_id'], 'unique'],
             [['vending_machine_id'], 'exist', 'skipOnError' => true, 'targetClass' => VendingMachine::className(), 'targetAttribute' => ['vending_machine_id' => 'vending_machine_id']],
             [['vendor_id_type'], 'exist', 'skipOnError' => true, 'targetClass' => IdType::className(), 'targetAttribute' => ['vendor_id_type' => 'id_type_id']],
-            [['vendor_id'],'validateVendorId']
+            [['vendor_id'], 'validateVendorId']
         ];
     }
 
@@ -88,9 +88,22 @@ class Vendor extends \yii\db\ActiveRecord {
         return $this->hasOne(IdType::className(), ['vendor_id_type' => 'id_type_id']);
     }
 
-    public function validateVendorId(){
-        $this->addError('vendor_id', 'Custom Error Message');
-        return false;
+    public function validateVendorId() {
+        $idTypeCode = IdType::findOne([$this->vendor_id_type])->id_type_code;
+        if (!empty($idTypeCode)) {
+            switch ($idTypeCode) {
+                case IdType::TYPE_NATIONAL_ID:
+                    $this->addError('vendor_id', 'Custom National Id Error Message');
+                    return;
+                case IdType::TYPE_DRIVING_LICENSE:
+                    $this->addError('vendor_id', 'Custom Driving License Error Message');
+                    return;
+                case IdType::TYPE_VOTERS_ID:
+                    $this->addError('vendor_id', 'Custom Voters Id Error Message');
+                    return;
+            }
+        }
+        return true;
     }
 
     public function getFullName() {

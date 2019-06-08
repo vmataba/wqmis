@@ -14,21 +14,21 @@ use app\models\UserType;
     <?php $form = ActiveForm::begin(); ?>
     <div class="row">
         <div class="col-sm-4">
-            <?= $form->field($profile, 'first_name')->textInput(['maxlength' => true]) ?>
+            <?= $form->field($profile, 'first_name')->textInput(['maxlength' => true,'placeholder' => 'Enter first name']) ?>
         </div>
         <div class="col-sm-4">
-            <?= $form->field($profile, 'middle_name')->textInput(['maxlength' => true]) ?>
+            <?= $form->field($profile, 'middle_name')->textInput(['maxlength' => true,'placeholder' => 'Enter middle name (Optional)']) ?>
         </div>
         <div class="col-sm-4">
-            <?= $form->field($profile, 'last_name')->textInput(['maxlength' => true]) ?>
+            <?= $form->field($profile, 'last_name')->textInput(['maxlength' => true,'placeholder' => 'Enter last name']) ?>
         </div>
     </div>
     <div class="row">
         <div class="col-sm-4">
-            <?= $form->field($profile, 'phone_number')->textInput(['maxlength' => true]) ?>
+            <?= $form->field($profile, 'phone_number')->textInput(['maxlength' => true,'placeholder' => 'Enter phone number']) ?>
         </div>
         <div class="col-sm-4">
-            <?= $form->field($profile, 'email')->textInput(['maxlength' => true]) ?>
+            <?= $form->field($profile, 'email')->textInput(['maxlength' => true,'placeholder' => 'Enter email address']) ?>
         </div>
         <div class="col-sm-4">
             <?= $form->field($model, 'user_type')->dropDownList(UserType::getUserTypes(), ['prompt' => 'Select...']) ?>
@@ -37,7 +37,10 @@ use app\models\UserType;
 
     <div class="row">
         <div class="col-sm-4">
-            <?= $form->field($model, 'username')->textInput(['maxlength' => true]) ?>
+            <?= $form->field($model, 'username')->textInput(['maxlength' => true,'placeholder' => 'Enter username']) ?>
+        </div>
+        <div class="col-sm-4">
+            <?= $form->field($model, 'password')->passwordInput(['maxlength' => true,'placeholder' => 'Enter a password or leave blank for default']) ?>
         </div>
     </div>
 

@@ -19,7 +19,8 @@ use yii\helpers\Html;
             <?=
             Html::submitButton('Generate Report', [
                 'class' => 'btn btn-info btn-block',
-                'style' => 'margin-top: 23px'
+                'style' => 'margin-top: 23px',
+                'id' => 'btnGenerateReport'
             ])
             ?>
         </div>

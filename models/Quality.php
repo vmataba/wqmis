@@ -66,6 +66,7 @@ class Quality extends \yii\db\ActiveRecord {
     }
 
     public static function getQualityMeasures($vendingMachineId) {
+        $statuses = self::find()->where(['vending_machine_id' => $vendingMachineId])->select('status')->all(); 
         $measures = [
             'vendingMachineId' => $vendingMachineId,
             'conductivity' => [],
@@ -73,7 +74,7 @@ class Quality extends \yii\db\ActiveRecord {
             'turbidity' => [],
             'temperature' => [],
             'time' => [],
-            'status' => self::findOne(['recieved_at' => self::find()->max('recieved_at')])->status,
+            'status' => '',
             'vendor' => Vendor::findOne(['vending_machine_id' => $vendingMachineId])
         ];
         $allMeasures = self::find()
@@ -98,7 +99,7 @@ class Quality extends \yii\db\ActiveRecord {
             'turbidity' => array_reverse($measures['turbidity']),
             'temperature' => array_reverse($measures['temperature']),
             'time' => array_reverse($measures['time']),
-            'status' => self::findOne(['recieved_at' => self::find()->max('recieved_at')])->status,
+            'status' => $statuses[sizeof($statuses) -1]->status,
             'vendor' => $measures['vendor']
         ];
     }

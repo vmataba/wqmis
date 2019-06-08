@@ -41,6 +41,9 @@
 
 <script>
     document.getElementById('btnPrintReport').onclick = function () {
+        document.getElementById('btnGenerateReport').style.display = 'none';
+        document.getElementById('btnPrintReport').style.display = 'none';
+        document.getElementsByClassName('breadcrumb')[0].style.display = 'none';
         window.print();
         //document.getElementById('reportSection').print();
     };
