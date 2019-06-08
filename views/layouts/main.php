@@ -23,7 +23,7 @@ AppAsset::register($this);
         <?php $this->registerCsrfMetaTags() ?>
         <title><?= Html::encode($this->title) ?></title>
         <?php $this->head() ?>
-        <!--script src="template/bower_components/jquery/dist/jquery.min.js"></script-->
+        <script src="template/bower_components/jquery/dist/jquery.min.js"></script>
         <!--script src="/wqmis2/web/assets/36d5ffed/jquery.js"></script-->
 
         <style>

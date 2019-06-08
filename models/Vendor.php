@@ -93,13 +93,21 @@ class Vendor extends \yii\db\ActiveRecord {
         if (!empty($idTypeCode)) {
             switch ($idTypeCode) {
                 case IdType::TYPE_NATIONAL_ID:
-                    $this->addError('vendor_id', 'Custom National Id Error Message');
+
+                    
+                    if (!(preg_match("/(\d{8})-(\d{5})-(\d{5})-(\d{2})/", $this->vendor_id) && strlen($this->vendor_id) === IdType::TYPE_NATIONAL_ID_SIZE)) {
+                        $this->addError('vendor_id', 'Invalid National Id number');
+                    }
                     return;
                 case IdType::TYPE_DRIVING_LICENSE:
-                    $this->addError('vendor_id', 'Custom Driving License Error Message');
+                   if (!(preg_match("/(\d{10})/", $this->vendor_id) && strlen($this->vendor_id) === IdType::TYPE_DRIVING_LICENSEL_ID_SIZE)) {
+                        $this->addError('vendor_id', 'Invalid Driving License Id number');
+                    }
                     return;
                 case IdType::TYPE_VOTERS_ID:
-                    $this->addError('vendor_id', 'Custom Voters Id Error Message');
+                     if (!(preg_match("/T-(\d{4})-(\d{4})-(\d{3})-\d/", $this->vendor_id) && strlen($this->vendor_id) === IdType::TYPE_VOTERS_ID_SIZE)) {
+                        $this->addError('vendor_id', "Invalid Voter's Id number");
+                    }
                     return;
             }
         }

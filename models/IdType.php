@@ -18,6 +18,10 @@ class IdType extends \yii\db\ActiveRecord {
     const TYPE_NATIONAL_ID = 'NATIONAL_ID';
     const TYPE_DRIVING_LICENSE = 'DRIVING_LICENSE';
     const TYPE_VOTERS_ID = 'VOTERS_ID';
+    
+    const TYPE_NATIONAL_ID_SIZE = 23;
+    const TYPE_DRIVING_LICENSEL_ID_SIZE = 10;
+    const TYPE_VOTERS_ID_SIZE = 17;
 
     /**
      * {@inheritdoc}
