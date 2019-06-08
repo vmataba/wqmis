@@ -40,7 +40,7 @@ class Vendor extends \yii\db\ActiveRecord {
         return [
             [['vendor_id', 'first_name', 'last_name', 'region_id', 'district_id', 'street'], 'required'],
             [['vendor_id_type', 'district_id', 'updated_by'], 'integer'],
-            [['vendor_id'], 'string'],
+            [['vendor_id'], 'string','max' => IdType::TYPE_NATIONAL_ID_SIZE],
             [['created_at', 'updated_at'], 'safe'],
             [['vending_machine_id', 'first_name', 'middle_name', 'last_name', 'street'], 'string', 'max' => 255],
             [['phone_number'], 'string', 'max' => 16],

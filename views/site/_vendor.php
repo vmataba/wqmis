@@ -1,4 +1,5 @@
 <?php
+
 use yii\bootstrap\Modal;
 use app\models\Region;
 use app\models\District;
@@ -9,6 +10,10 @@ use app\models\District;
 <div>
 
     <table class="table table-striped table-bordered table-responsive">
+        <tr>
+            <th>Vendor ID</th>
+            <td><?= $qualityMeasures['vendor']->vendor_id ?></td>
+        </tr>
         <tr>
             <th>First Name</th>
             <td><?= $qualityMeasures['vendor']->first_name ?></td>

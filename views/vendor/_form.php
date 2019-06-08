@@ -96,9 +96,7 @@ use app\models\VendingMachine;
 
     $('#regionsDropDown').change(() => {
         const regionId = $('#regionsDropDown').val();
-
         const url = "<?= Url::to(['district/get-districts']) ?>&regionId=" + regionId;
-
         $.ajax({
             url,
             success: (response) => {
@@ -110,22 +108,17 @@ use app\models\VendingMachine;
             }
         });
     });
-
     //Vendor Id 
     $('#vendorIdType').change(() => {
 
         const vendorIdDom = $('#vendorId');
-
         const typeNationalId = 1;
         const typeDrivingLicense = 2;
         const typeVotersId = 3;
 
-
-
         vendorIdDom.keyup(() => {
             const index = $('#vendorIdType').val();
             const currentValue = vendorIdDom.val();
-
             switch (parseInt(index)) {
                 case typeNationalId:
                     let pattern1 = /(\d{8})/;
@@ -139,7 +132,6 @@ use app\models\VendingMachine;
                         //Second 5 digits
                         let newValue2 = currentValue.replace(pattern2, currentValue + '-');
                         vendorIdDom.val(newValue2);
-
                     } else if (currentValue.length >= 15 && currentValue.length <= 20) {
                         let newValue3 = currentValue.replace(pattern3, currentValue + '-');
                         vendorIdDom.val(newValue3);
@@ -147,25 +139,20 @@ use app\models\VendingMachine;
                         vendorIdDom.val(currentValue.substring(0, parseInt("<?= IdType::TYPE_NATIONAL_ID_SIZE ?>")));
                     }
                     break;
-
                 case typeDrivingLicense:
                     vendorIdDom.val(currentValue.substring(0, parseInt("<?= IdType::TYPE_DRIVING_LICENSEL_ID_SIZE ?>")));
                     break;
-
-
                 case typeVotersId:
                     let pattern11 = /T/;
                     let pattern21 = /T-(\d{4})/;
                     let pattern31 = /T-(\d{4})-(\d{4})/;
                     let pattern41 = /T-(\d{4})-(\d{4})-(\d{3})/;
-
                     if (currentValue === 'T') {
                         let newValue11 = currentValue.replace(pattern11, currentValue + '-');
                         vendorIdDom.val(newValue11);
                     } else if (currentValue.length >= 2 && currentValue.length <= 6) {
                         let newValue21 = currentValue.replace(pattern21, currentValue + '-');
                         vendorIdDom.val(newValue21);
-
                     } else if (currentValue.length >= 7 && currentValue.length <= 11) {
                         let newValue31 = currentValue.replace(pattern31, currentValue + '-');
                         vendorIdDom.val(newValue31);
@@ -176,13 +163,10 @@ use app\models\VendingMachine;
                         vendorIdDom.val(currentValue.substring(0, parseInt("<?= IdType::TYPE_VOTERS_ID_SIZE ?>")));
                     }
                     break;
-
-
             }
 
         }
         );
-
     });
 
 

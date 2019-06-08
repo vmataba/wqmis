@@ -114,7 +114,7 @@ class VendorController extends Controller {
     public function actionDelete($id) {
         $model = $this->findModel($id);
         $vendingMachine = VendingMachine::findOne($model->vending_machine_id);
-        $quality = Quality::findOne(['vending_machine-id' => $model->vending_machine_id]);
+        $quality = Quality::findOne(['vending_machine_id' => $model->vending_machine_id]);
         if (isset($quality)) {
             $quality->delete();
         }
